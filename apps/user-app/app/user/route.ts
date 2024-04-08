@@ -1,18 +1,21 @@
 import { PrismaClient } from "@quickpay/db/client"
+import { getServerSession } from "next-auth"
 import { NextResponse } from "next/server"
+import { authOptions } from "../../lib/auth"
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
 export  async function GET() {
 
-  const user = prisma.user.create({
-    data : {
-      email : "hello",
-      password : "secret passowrd"
-    }
+  const session = await getServerSession(authOptions)
+    if (session.user) {
+      return NextResponse.json({
+          user: session.user
+      })
+  }
+  return NextResponse.json({
+      message: "You are not logged in"
+  }, {
+      status: 403
   })
-
-  return NextResponse.json(
-    {message : "hi there"}
-  )
 }
