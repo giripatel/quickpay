@@ -1,9 +1,10 @@
 
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from 'bcrypt'
-import  {PrismaClient}  from "@quickpay/db/client"
+// check this for confirmation
+import  db  from "@quickpay/db/client"
 
-const client = new PrismaClient();
+
 
 
 export const authOptions = {
@@ -19,7 +20,7 @@ export const authOptions = {
             async authorize(credentials : any){
                 
                 const hashedPassword = await bcrypt.hash(credentials.password,10)
-                const existingUser = await client.user.findFirst({
+                const existingUser = await db.user.findFirst({
                     where : {
                         number : credentials.number
                     }
@@ -39,7 +40,7 @@ export const authOptions = {
                 }
  
                 try {
-                    const user = await client.user.create({
+                    const user = await db.user.create({
                         data: {
                             number: credentials.phone,
                             password: hashedPassword,
