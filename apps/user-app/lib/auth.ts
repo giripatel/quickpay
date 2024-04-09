@@ -18,7 +18,7 @@ export const authOptions = {
             // TODO : User crendentials type
             async authorize(credentials : any){
                 
-                const hashedPassword = await bcrypt.hash(credentials.passowrd,"password")
+                const hashedPassword = await bcrypt.hash(credentials.password,10)
                 const existingUser = await client.user.findFirst({
                     where : {
                         number : credentials.number
@@ -36,22 +36,23 @@ export const authOptions = {
                             email : existingUser.email
                         }
                     }
-
                 }
  
                 try {
                     const user = await client.user.create({
                         data: {
                             number: credentials.phone,
-                            password: hashedPassword
+                            password: hashedPassword,
+                            
                         }
                     });
                 
                     return {
                         id: user.id.toString(),
                         name: user.name,
-                        email: user.number
+                        number: user.number
                     }
+
                 } catch(e) {
                     console.error(e);
                 }
