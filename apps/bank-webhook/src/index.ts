@@ -6,7 +6,7 @@ const app = express();
 app.post('/hdfcWebhook',async (req,res) => {
 
     const paymentInformation = {
-        // token is to identify the on ram transaction of provider
+        // token is to identify the onramp transaction of provider
         token : req.body.token,
         userId: req.body.user_identifier,
         amount: req.body.amount
@@ -19,7 +19,7 @@ app.post('/hdfcWebhook',async (req,res) => {
         },
         data : {
            amount : {
-            increment : paymentInformation.amount
+             increment : Number(paymentInformation.amount)
            }
         }
     })
@@ -38,4 +38,4 @@ app.post('/hdfcWebhook',async (req,res) => {
     })
 })
 
-app.listen(3000)
+app.listen(3005)
