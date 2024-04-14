@@ -8,7 +8,7 @@ const TextInput = ({label,placeholder,onChange} : {
   return (
     <div>
       <label className="block mb-2 text-sm font-medium text-gray-900">{label}</label>
-      <input type="text" className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder={placeholder} onChange={(e) => {
+      <input type="text" className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-2' placeholder={placeholder} onChange={(e) => {
         onChange(e.target.value)
       }} />
     </div>
