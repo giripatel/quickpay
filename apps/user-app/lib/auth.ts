@@ -6,7 +6,6 @@ import  db  from "@quickpay/db/client"
 
 
 
-
 export const authOptions = {
 
     providers :[
@@ -18,19 +17,22 @@ export const authOptions = {
             },
             // TODO : User crendentials type
             async authorize(credentials : any){
-                
-                const hashedPassword = await bcrypt.hash(credentials.password,10)
+                const hashedPassword = await bcrypt.hash(credentials.password,10);
+                console.log("Hashed password : -- "+hashedPassword);
+                console.log(credentials.phone)
                 const existingUser = await db.user.findFirst({
                     where : {
-                        number : credentials.number
+                        number : credentials.phone
                     }
                 })
-
+                console.log(credentials)
                 if(existingUser){
+                    console.log("Existing user : -- ",existingUser);
                     
-                    const passowrdValidation = await bcrypt.compare(credentials.passowrd, existingUser.password);
+                    const passowrdValidation = await bcrypt.compare(credentials.password, existingUser.password);
+                    console.log(passowrdValidation);
+                    
                     if(passowrdValidation){
-
                         return {
                             id : existingUser.id.toString(),
                             name : existingUser.name,
@@ -47,7 +49,6 @@ export const authOptions = {
                             
                         }
                     });
-                
                     return {
                         id: user.id.toString(),
                         name: user.name,
@@ -57,7 +58,6 @@ export const authOptions = {
                 } catch(e) {
                     console.error(e);
                 }
-    
                 return null
             }
         })
