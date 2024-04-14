@@ -1,5 +1,5 @@
 import React from 'react'
-import AddMoney from '../../../components/AddMoney'
+import AddMoney from '../../components/AddMoney'
 
 const page = () => {
   return (
