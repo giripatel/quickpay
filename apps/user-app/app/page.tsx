@@ -7,6 +7,7 @@ import { Appbar } from "@repo/ui/Appbar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/auth";
 import { redirect } from "next/navigation";
+import BalanceCard from "../components/BalanceCard";
 
 
 export default async function Page() {

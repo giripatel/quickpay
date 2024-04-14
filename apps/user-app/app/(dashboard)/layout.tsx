@@ -7,10 +7,12 @@ const layout = ({children} : {children : ReactNode}) : JSX.Element => {
       <div className='bg-teal-100 w-72 min-h-screen border-r border-slate-300 mr-4 pt-28 '>
         <div>
             <SidebarItem href={'/dashboard'} title='Home' icon={<HomeIcon />}/>
-            <SidebarItem href={'/onramptransactions'} title='Transfer' icon={<TransferIcon />}/>
+            <SidebarItem href={'/transfer'} title='Transfer' icon={<TransferIcon />}/>
             <SidebarItem href={'/transactions'} title='Transactions' icon={<TransactionsIcon />}/>
+            
         </div>
       </div>
+        {children}
     </div>
   )
 }
