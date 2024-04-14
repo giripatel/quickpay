@@ -3,19 +3,23 @@ import db from '@quickpay/db/client'
 
 const app = express();
 
+app.use(express.json())
 app.post('/hdfcWebhook',async (req,res) => {
 
+    console.log(req.body);
+    
     const paymentInformation = {
         // token is to identify the onramp transaction of provider
         token : req.body.token,
         userId: req.body.user_identifier,
-        amount: req.body.amount
+        amount: Number(req.body.amount)
     }
 
+    console.log("Reacing here .......!")
     // TODO : add transaction logic
-    await db.balance.update({
+    await db.balance.updateMany({
         where : {
-            id: req.body.user_identifier,
+            userId: Number(req.body.user_identifier),
         },
         data : {
            amount : {
@@ -29,7 +33,7 @@ app.post('/hdfcWebhook',async (req,res) => {
             token : paymentInformation.token
         },
         data : {
-            status : "Success"
+            status : 'Success'
         }
     })
 
