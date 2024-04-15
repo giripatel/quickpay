@@ -9,7 +9,7 @@ const layout = ({children} : {children : ReactNode}) : JSX.Element => {
             <SidebarItem href={'/dashboard'} title='Home' icon={<HomeIcon />}/>
             <SidebarItem href={'/transfer'} title='Transfer' icon={<TransferIcon />}/>
             <SidebarItem href={'/transactions'} title='Transactions' icon={<TransactionsIcon />}/>
-            <SidebarItem href={'/p2ptransaction'} title='p2p Transactions' icon={<P2PIcon />}/>            
+            <SidebarItem href={'/p2ptransfer'} title='p2p Transfer' icon={<P2PIcon />}/>            
         </div>
       </div>
         {children}

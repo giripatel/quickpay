@@ -4,7 +4,7 @@ import AddMoney from '../../../components/AddMoney'
 const page = () => {
   return (
     <div>
-      <AddMoney/>
+      This is dashboard
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth"
 import prisma from "@quickpay/db/client";
 
-export async function p2pTransactions(to : string,amount : number) {
+export async function p2pTransfer(to : string,amount : number) {
     
     const session = await getServerSession(authOptions);
     const userId = Number(session?.user.id);
@@ -61,6 +61,18 @@ export async function p2pTransactions(to : string,amount : number) {
             }
         }
        })
+
+       await tx.p2pTransfer.create({
+        
+            data : {
+                timestamp : new Date(),
+                amount : amount,
+                fromUserId : userId,
+                toUserId : toUserId
+            }
+        
+       })
+
     })
 
     return {
