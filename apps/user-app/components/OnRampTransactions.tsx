@@ -1,5 +1,5 @@
 import { Card } from "@repo/ui/card"
-
+import {OnRampTransactionType} from '../../../packages/schema'
 
 enum OnRampStatus {
     Sucess,
@@ -7,17 +7,18 @@ enum OnRampStatus {
     Failed
 }
 
+interface TransactionsType {
+    transactions : {
+        time : Date,
+        amount : number,
+        status : OnRampStatus,
+        provider : string
+    }[]
+}
+
 export const OnRampTransactions = ({
      transactions
-    } : {
-        transactions : {
-            time : Date,
-            amount : number,
-            // TODO : make staus type more specific
-            status : string,
-            provider : string
-        }[]
-}) => {
+    } : OnRampTransactionType) => {
 
     if(!transactions.length) {
         return <Card title="Recent Transactions">

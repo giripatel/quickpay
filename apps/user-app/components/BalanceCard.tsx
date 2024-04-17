@@ -1,10 +1,10 @@
 import { Card } from '@repo/ui/card';
 import React from 'react'
+// import { BalanceCardType } from '@quickpay/schema/zod'
+import {BalanceCardType} from "../../../packages/schema/index"
 
-const BalanceCard = ({amount, locked} : {
-    amount : number;
-    locked : number;
-}) => {
+const BalanceCard = ({amount, locked} : BalanceCardType) => {
+    
   return (
     <Card title='Balance'>
         <div className='flex justify-between border-b border-slate-300 pb-2'>

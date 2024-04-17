@@ -1,6 +1,12 @@
 {
-  "name": "schema",
+  "name": "@quickpay/schema",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "exports" : {
+    "./zod" : "./index.ts"
+  }
 }

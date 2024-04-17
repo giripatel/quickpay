@@ -1,12 +1,18 @@
 import { Card } from '@repo/ui/card'
 import React from 'react'
+import { P2PTransactionsType } from '../../../packages/schema'
 
-export const P2PTransactions = ( { transactions }   : {transactions :  {
-    receiverName :string,
-    timeStamp : Date,
-    receiverNumber : string
-    amount : number
-}[]}) => {
+interface TransactionsType {
+    transactions :  {
+        receiverName :string,
+        timeStamp : Date,
+        receiverNumber : string
+        amount : number
+    }[]
+}
+
+
+export const P2PTransactions = ( { transactions } : P2PTransactionsType) => {
 
     if(!transactions.length){
         return <Card title='p2p Transactions'>
