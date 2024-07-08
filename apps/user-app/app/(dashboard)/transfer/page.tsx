@@ -6,19 +6,6 @@ import AddMoney from '../../../components/AddMoney'
 import BalanceCard from '../../../components/BalanceCard'
 import { OnRampTransactions } from '../../../components/OnRampTransactions'
 
-const getBalance = async () => {
-  
-  const session = await getServerSession(authOptions);
-  const balance = await prisma.balance.findFirst({
-    where : {
-        userId : Number(session?.user?.id)
-    }
-  });
-  return {
-    amount : balance?.amount || 0,
-    locked : balance?.locked || 0
-  }
-}
 
 async function getOnRampTransactions() {
     const session = await getServerSession(authOptions)
@@ -34,6 +21,20 @@ async function getOnRampTransactions() {
         provider : t.provider
     }))    
 }
+
+async function getBalance() {
+  
+    const session = await getServerSession(authOptions);
+    const balance = await prisma.balance.findFirst({
+      where : {
+          userId : Number(session?.user?.id)
+      }
+    });
+    return {
+      amount : balance?.amount || 0,
+      locked : balance?.locked || 0
+    }
+  }
 
 export default async function() {
  
