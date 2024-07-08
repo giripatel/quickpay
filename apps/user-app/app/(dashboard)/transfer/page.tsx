@@ -36,10 +36,10 @@ async function getBalance() {
     }
   }
 
-export default async function() {
+async function page() {
  
-    const balance = await getBalance();
     const transactions = await getOnRampTransactions();
+    const balance = await getBalance();
 
     return <div className='w-screen'>
         <div className='text-4xl text-[#6a51a6] pt-8 mb-8 font-bold'>
@@ -53,10 +53,11 @@ export default async function() {
                 <BalanceCard amount={balance.amount} locked={balance.locked} />
                 <div className='pt-4'>
 
-
                     <OnRampTransactions transactions={transactions}/>
                 </div>
             </div>
         </div>
     </div>
 }
+
+export default page; 
