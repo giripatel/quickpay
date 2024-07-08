@@ -6,7 +6,7 @@ import AddMoney from '../../../components/AddMoney'
 import BalanceCard from '../../../components/BalanceCard'
 import { OnRampTransactions } from '../../../components/OnRampTransactions'
 
-export const getBalance = async () => {
+const getBalance = async () => {
   
   const session = await getServerSession(authOptions);
   const balance = await prisma.balance.findFirst({
@@ -35,7 +35,7 @@ async function getOnRampTransactions() {
     }))    
 }
 
-export default async function() {
+ async function page() {
  
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
@@ -57,3 +57,5 @@ export default async function() {
         </div>
     </div>
 }
+
+export default page;
