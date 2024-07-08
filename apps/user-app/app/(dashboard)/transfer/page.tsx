@@ -20,7 +20,6 @@ export const getBalance = async () => {
   }
 }
 
-
 async function getOnRampTransactions() {
     const session = await getServerSession(authOptions)
     const txns = await prisma.onRampTransaction.findMany({
@@ -52,6 +51,8 @@ export default async function() {
             <div>
                 <BalanceCard amount={balance.amount} locked={balance.locked} />
                 <div className='pt-4'>
+
+                    
                     <OnRampTransactions transactions={transactions}/>
                 </div>
             </div>
