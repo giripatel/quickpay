@@ -1,39 +1,10 @@
-import { getServerSession } from 'next-auth'
 import React from 'react'
-import { authOptions } from '../../../lib/auth'
-import prisma from '@quickpay/db/client'
 import AddMoney from '../../../components/AddMoney'
 import BalanceCard from '../../../components/BalanceCard'
 import { OnRampTransactions } from '../../../components/OnRampTransactions'
+import { getBalance } from '../../../lib/actions/getBalance'
+import { getOnRampTransactions } from '../../../lib/actions/getOnRampTransactions'
 
-const getBalance = async () => {
-  
-  const session = await getServerSession(authOptions);
-  const balance = await prisma.balance.findFirst({
-    where : {
-        userId : Number(session?.user?.id)
-    }
-  });
-  return {
-    amount : balance?.amount || 0,
-    locked : balance?.locked || 0
-  }
-}
-
-async function getOnRampTransactions() {
-    const session = await getServerSession(authOptions)
-    const txns = await prisma.onRampTransaction.findMany({
-        where : {
-            userId : Number(session?.user?.id)
-        }
-    })
-    return txns.map(t => ({
-        time : t.startTime,
-        amount : t.amount,
-        status: t.status,
-        provider : t.provider
-    }))    
-}
 
  async function page() {
  
