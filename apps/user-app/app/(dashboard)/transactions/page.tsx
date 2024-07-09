@@ -23,7 +23,7 @@ const getTransactions = async () =>{
     }
   })
 
-  return transactions.map(t => ({
+  return transactions.map((t: any) => ({
             receiverName : t.toUser.name || "",
             timeStamp : t.timestamp,
             receiverNumber : t.toUser.number,
