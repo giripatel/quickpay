@@ -25,7 +25,7 @@ export const P2PTransactions = ( { transactions } : P2PTransactionsType) => {
   return (
     <Card title="p2p Transactions">
         <div>
-            {transactions.map((t , index) => (
+            {transactions.map((t:any , index) => (
                 <div key={index} className='flex justify-between w-80 pt-2'>
                     <div className=''>
                         <div className='text-lg'>Sent to: {t.receiverName}</div>

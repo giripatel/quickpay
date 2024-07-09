@@ -23,7 +23,7 @@ export async function p2pTransfer(to : string,amount : number) {
 
     const toUserId = toUser.id
 
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
         
        const userBalance = await tx.balance.findFirst({
         where : {
